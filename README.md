@@ -3,7 +3,8 @@ This project contains all the files required to automatically spin up a wordpres
 
 ## Explanation 
 ### wordpress-ssl.conf
-`wordperss-ssl.conf` requires an environment variable: `WORDPRESS_DOMAIN` - which should be just the domain name (for example, for a website `https://randomgarbage.site`, `WORDPRESS_DOMAIN = randomgarbage.site`).
+`wordperss-ssl.conf` requires an environment variable: 
+- `WORDPRESS_DOMAIN` - which should be just the domain name (for example, for a website `https://randomgarbage.site`, `WORDPRESS_DOMAIN = randomgarbage.site`).
 
 ### init.sh
 `init.sh` requires the following env vars: 
