@@ -6,18 +6,12 @@ sudo apt upgrade -y
 sudo apt install apache2 -y
 
 # Get helper files from repo
-mkdir /home/wlspro
-cd /home/wlspro
-sudo git clone https://github.com/WLSPro/auto-wordpress.git source
-
 sudo cp /home/wlspro/source/wordpress.conf /etc/apache2/sites-available/wordpress.conf
-sudo cp /home/wlspro/source/wordpress-ssl.conf /etc/apache2/sites-available/wordpress-ssl.conf
 
 # the wordpress-ssl is slightly wrong - it need to have 
 sudo a2enmod rewrite
 sudo a2enmod ssl
 sudo a2ensite wordpress.conf
-sudo a2ensite wordpress-ssl.conf
 sudo service apache2 restart
 
 # Mysql
@@ -64,3 +58,10 @@ sudo systemctl restart apache2
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot certonly --non-interactive --agree-tos --register-unsafely-without-email -d randomgarbage.site --webroot -w /var/www/html/
+
+# Copy ssl conf file
+sudo cp /home/wlspro/source/wordpress-ssl.conf /etc/apache2/sites-available/wordpress-ssl.conf
+
+# activate the ssl site and restart apache
+sudo a2ensite wordpress-ssl.conf
+sudo service apache2 restart
