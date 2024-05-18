@@ -21,11 +21,16 @@ sudo mysql -e "CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password';"
 sudo mysql -e "GRANT ALL ON wordpress.* TO 'wp_user'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
-# PHP default version install
-sudo apt install php -y
-sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
-sudo apt install libapache2-mod-php -y
-sudo apt install php-mysql -y
+sudo add-apt-repository ppa:ondrej/php -y
+
+# Update package list again after adding new PPA
+sudo apt update
+
+# Install PHP 7.4 and required extensions
+sudo apt install php7.4 -y
+sudo apt install php7.4-curl php7.4-gd php7.4-mbstring php7.4-xml php7.4-xmlrpc php7.4-soap php7.4-intl php7.4-zip -y
+sudo apt install libapache2-mod-php7.4 -y
+sudo apt install php7.4-mysql -y
 sudo apt install php-imagick -y
 
 cd /etc/php/7.4/apache2
