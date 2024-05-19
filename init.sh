@@ -1,16 +1,25 @@
 #!/bin/sh
 
+URL="http://randomgarbage.site"
+TITLE="Random Garbage"
+ADMIN_USER="admin"
+ADMIN_PASSWORD="admin"
+ADMIN_EMAIL="admin@wlspro.com"
+
 sudo apt update -y
 sudo apt upgrade -y
 
 sudo apt install apache2 -y
+
+sudo mkdir /home/wlspro
+cd /home/wlspro 
+sudo git clone https://github.com/WLSPro/auto-wordpress.git source
 
 # Get helper files from repo
 sudo cp /home/wlspro/source/wordpress.conf /etc/apache2/sites-available/wordpress.conf
 
 # the wordpress-ssl is slightly wrong - it need to have 
 sudo a2enmod rewrite
-sudo a2enmod ssl
 sudo a2ensite wordpress.conf
 sudo service apache2 restart
 
@@ -21,21 +30,16 @@ sudo mysql -e "CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'password';"
 sudo mysql -e "GRANT ALL ON wordpress.* TO 'wp_user'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
-sudo add-apt-repository ppa:ondrej/php -y
-
-# Update package list again after adding new PPA
-sudo apt update
-
-# Install PHP 7.4 and required extensions
-sudo apt install php7.4 -y
-sudo apt install php7.4-curl php7.4-gd php7.4-mbstring php7.4-xml php7.4-xmlrpc php7.4-soap php7.4-intl php7.4-zip -y
-sudo apt install libapache2-mod-php7.4 -y
-sudo apt install php7.4-mysql -y
+# PHP default version install
+sudo apt install php -y
+sudo apt install php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
+sudo apt install libapache2-mod-php -y
+sudo apt install php-mysql -y
 sudo apt install php-imagick -y
 
-cd /etc/php/7.4/apache2
-sudo cp php.ini phpoldini.txt
-sudo cp /home/wlspro/source/php74.ini /etc/php/7.4/apache2/php.ini
+# cd /etc/php/8.3/apache2
+# sudo cp php.ini phpoldini.txt
+# sudo cp /home/wlspro/source/php74.ini /etc/php/8.3/apache2/php.ini
 
 # delete the apache default index.html
 sudo rm /var/www/html/index.html
