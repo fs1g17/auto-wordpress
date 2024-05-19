@@ -1,10 +1,10 @@
 #!/bin/sh
 
-URL="http://randomgarbage.site"
-TITLE="Random Garbage"
-ADMIN_USER="admin"
-ADMIN_PASSWORD="admin"
-ADMIN_EMAIL="admin@wlspro.com"
+# URL="http://randomgarbage.site"
+# TITLE="Random Garbage"
+# ADMIN_USER="admin"
+# ADMIN_PASSWORD="admin"
+# ADMIN_EMAIL="admin@wlspro.com"
 
 sudo apt update -y
 sudo apt upgrade -y
