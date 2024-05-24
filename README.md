@@ -13,3 +13,6 @@ This project contains all the files required to automatically spin up a wordpres
 - `ADMIN_USER`: the name of the administrator user
 - `ADMIN_PASSWORD`: the password for the administrator user
 - `ADMIN_EMAIL`: the email of the administrator user
+
+### Init3
+The point of init3 is to retry the certification intallation 
